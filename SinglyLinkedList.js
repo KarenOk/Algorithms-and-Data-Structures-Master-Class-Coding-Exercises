@@ -23,9 +23,31 @@ class SinglyLinkedList {
 
         return this;
     }
+
+    pop() {
+        if (!this.length) return;
+        let current = this.head;
+        let prev = current;
+        if (this.length === 1) { this.head = this.tail = null }
+
+        else {
+            while (current.next) {
+                prev = current
+                current = current.next;
+            }
+
+            this.tail = prev;
+            this.tail.next = null;
+        }
+
+        this.length--;
+        return current;
+    }
 }
 
 let list = new SinglyLinkedList();
 list.push(1);
 list.push(2);
+list.pop();
+list.pop();
 console.log(list);
