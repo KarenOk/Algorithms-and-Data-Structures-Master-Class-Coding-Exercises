@@ -43,11 +43,30 @@ class SinglyLinkedList {
         this.length--;
         return current;
     }
+
+    get(index) {
+        if (index < 0 || index >= this.length) return undefined;
+        let current = this.head;
+
+        for (let i = 0; i < this.length; i++) {
+            if (i === index) break;
+            current = current.next;
+        }
+
+        return current;
+    }
 }
 
 let list = new SinglyLinkedList();
 list.push(1);
 list.push(2);
+list.push(5);
 list.pop();
 list.pop();
+list.push(1);
+list.push(2);
+list.push(5);
+console.log(list.get(0));
+console.log(list.get(1));
+console.log(list.get(2));
 console.log(list);
