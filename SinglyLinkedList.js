@@ -55,18 +55,29 @@ class SinglyLinkedList {
 
         return current;
     }
+
+
+    set(index, value) {
+        let node = this.get(index);
+        if (!node) return false;
+
+        node.value = value;
+        return true;
+    }
 }
 
 let list = new SinglyLinkedList();
 list.push(1);
 list.push(2);
 list.push(5);
+list.push(13);
+list.push(12);
+list.push(500);
 list.pop();
 list.pop();
-list.push(1);
-list.push(2);
-list.push(5);
-console.log(list.get(0));
-console.log(list.get(1));
-console.log(list.get(2));
+console.log(list.get(0)); // 1
+console.log(list.get(1)); // 2
+console.log(list.get(2)); // 5
+console.log(list.set(2, "Change 1")); // true
+console.log(list.set(100, "Change 1")); // false
 console.log(list);
