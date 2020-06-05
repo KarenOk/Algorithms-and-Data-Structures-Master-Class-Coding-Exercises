@@ -64,6 +64,15 @@ class SinglyLinkedList {
         node.value = value;
         return true;
     }
+
+    unshift(value) {
+        if (this.length === 0) this.push(value);
+        else {
+            let node = new Node(value);
+            node.next = this.head;
+            this.head = node;
+        }
+    }
 }
 
 let list = new SinglyLinkedList();
@@ -80,4 +89,5 @@ console.log(list.get(1)); // 2
 console.log(list.get(2)); // 5
 console.log(list.set(2, "Change 1")); // true
 console.log(list.set(100, "Change 1")); // false
+list.unshift('Unshifted in');
 console.log(list);
