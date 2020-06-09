@@ -72,6 +72,7 @@ class SinglyLinkedList {
             node.next = this.head;
             this.head = node;
         }
+        return this;
     }
 
     shift() {
@@ -82,6 +83,24 @@ class SinglyLinkedList {
         this.head = removed.next;
         removed.next = null;
         return removed;
+    }
+
+    insert(index, value) {
+        if (index < 0 || index > this.length) return false;
+
+        if (index === 0) return !!this.unshift(value);
+        else if (index === this.length) return !!this.push(value);
+        else {
+            let node = new Node(value);
+            let left = this.get(index - 1);
+            let right = this.get(index);
+
+            left.next = node;
+            node.next = right;
+            this.length++;
+            return true;
+        }
+
     }
 }
 
@@ -94,12 +113,15 @@ list.push(12);
 list.push(500);
 list.pop();
 list.pop();
-console.log(list.get(0)); // 1
-console.log(list.get(1)); // 2
-console.log(list.get(2)); // 5
+console.log(list.get(0).value); // 1
+console.log(list.get(1).value); // 2
+console.log(list.get(2).value); // 5
 console.log(list.set(2, "Change 1")); // true
 console.log(list.set(100, "Change 1")); // false
 list.unshift('Unshifted in 1');
 list.unshift('Unshifted in 2');
-console.log(list.shift());
+console.log(list.shift().value); // Unshifted in 2
+console.log(list.insert(2, "Inserted")); // true
+console.log(list.insert(5, "Inserted to the end")); // true
+console.log(list.insert(200, "Inserted to invalid index")); // false
 console.log(list);
