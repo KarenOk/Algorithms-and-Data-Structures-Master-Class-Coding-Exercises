@@ -17,12 +17,7 @@
 
 function findRotatedIndex(arr, num) {
 	let index;
-	let pivot;
-
-	// find pivot
-	for (let i = 0; i < arr.length - 1; i++) {
-		if (arr[i] > arr[i + 1]) pivot = i;
-	}
+	let pivot = findPivot(arr, 0, arr.length - 1); // find pivot
 
 	function helper(start, end) {
 		if (index) return;
@@ -40,4 +35,17 @@ function findRotatedIndex(arr, num) {
 	helper(pivot + 1, arr.length - 1);
 
 	return index ? index : -1;
+}
+
+function findPivot(arr, start, end) {
+	if (start > end) return -1;
+	else if (start === end) return start;
+
+	let mid = Math.floor((start + end) / 2);
+
+	if (arr[mid] > arr[end]) {
+		return findPivot(arr, mid + 1, end);
+	} else {
+		return findPivot(arr, start, mid);
+	}
 }
