@@ -100,6 +100,22 @@ class SinglyLinkedList {
 			return true;
 		}
 	}
+
+	remove(index) {
+		if (index < 0 || index >= this.length) return;
+
+		if (index === 0) return this.shift();
+		else if (index === this.length - 1) this.pop();
+		else {
+			let left = this.get(index - 1);
+			let removed = left.next;
+			let right = removed.next;
+
+			left.next = right;
+			this.length--;
+			return removed;
+		}
+	}
 }
 
 let list = new SinglyLinkedList();
