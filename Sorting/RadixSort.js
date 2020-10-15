@@ -16,3 +16,20 @@ function mostDigits(nums) {
 	let max = Math.max(...nums);
 	return digitCount(max);
 }
+
+function radixSort(arr) {
+	const mostNoOfDigits = mostDigits(arr);
+
+	for (let digitPos = 0; digitPos < mostNoOfDigits; digitPos++) {
+		const buckets = Array.from({ length: 10 }, () => []);
+
+		for (let num of arr) {
+			const digit = getDigit(num, digitPos); // digit determines the bucket number
+			buckets[digit].push(num);
+		}
+
+		arr = [].concat(...buckets);
+	}
+
+	return arr;
+}
