@@ -34,4 +34,15 @@ class BinarySearchTree {
 
 		return this;
 	}
+	find(value) {
+		let currentNode = this.root;
+
+		while (currentNode) {
+			if (value === currentNode.value) return currentNode;
+			else if (value < currentNode.value) currentNode = currentNode.left;
+			else currentNode = currentNode.right;
+		}
+
+		return;
+	}
 }
