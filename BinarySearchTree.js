@@ -45,4 +45,40 @@ class BinarySearchTree {
 
 		return;
 	}
+	DFSPreOrder() {
+		const result = [];
+
+		(function helper(node) {
+			if (!node) return;
+			result.push(node.value);
+			helper(node.left);
+			helper(node.right);
+		})(this.root);
+
+		return result;
+	}
+	DFSInOrder() {
+		const result = [];
+
+		(function helper(node) {
+			if (!node) return;
+			helper(node.left);
+			result.push(node.value);
+			helper(node.right);
+		})(this.root);
+
+		return result;
+	}
+	DFSPostOrder() {
+		const result = [];
+
+		(function helper(node) {
+			if (!node) return;
+			helper(node.left);
+			helper(node.right);
+			result.push(node.value);
+		})(this.root);
+
+		return result;
+	}
 }
