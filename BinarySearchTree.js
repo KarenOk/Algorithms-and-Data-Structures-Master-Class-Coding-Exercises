@@ -164,4 +164,18 @@ class BinarySearchTree {
 
 		return result;
 	}
+
+	findSecondLargest() {
+		if (!this.root) return;
+
+		let prev;
+		let current = this.root;
+
+		while (current.right) {
+			prev = current;
+			current = current.right;
+		}
+
+		return prev ? prev.value : prev;
+	}
 }
