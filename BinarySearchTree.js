@@ -178,4 +178,25 @@ class BinarySearchTree {
 
 		return prev ? prev.value : prev;
 	}
+
+	isBalanced() {
+		// A balanced tree is defined as a tree where the depth of all leaf nodes or nodes
+		// with single children differ by no more than one
+
+		if (!this.root) return true;
+		let depths = [];
+
+		const helper = (node, depth) => {
+			if (node.left) helper(node.left, depth + 1);
+			else depths.push(depth);
+
+			if (node.right) helper(node.right, depth + 1);
+			else depths.push(depth);
+		};
+
+		helper(this.root, 0);
+
+		const diff = Math.abs(Math.max(...depths) - Math.min(...depths));
+		return diff >= 0 && diff < 2;
+	}
 }
