@@ -17,4 +17,10 @@ class Graph {
 			this.adjacencyList[v2] = this.adjacencyList[v2].filter(v => v !== v1);
 		}
 	}
+	removeVertex(vertex) {
+		if (this.adjacencyList[vertex]) {
+			for (let v of this.adjacencyList[vertex]) this.removeEdge(v, vertex);
+			delete this.adjacencyList[vertex];
+		}
+	}
 }
