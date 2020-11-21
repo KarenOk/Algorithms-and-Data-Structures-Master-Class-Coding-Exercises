@@ -23,4 +23,19 @@ class Graph {
 			delete this.adjacencyList[vertex];
 		}
 	}
+	DFSRecursive(start) {
+		const visited = new Set();
+
+		const helper = vertex => {
+			if (!visited.has(vertex)) {
+				visited.add(vertex);
+				let children = this.adjacencyList[vertex];
+				for (let child of children) helper(child);
+			}
+		};
+
+		helper(start);
+
+		return Array.from(visited);
+	}
 }
