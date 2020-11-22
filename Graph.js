@@ -35,7 +35,22 @@ class Graph {
 		};
 
 		helper(start);
+		return Array.from(visited);
+	}
+	DFSIterative(start) {
+		if (!this.adjacencyList[start]) return [];
 
+		const stack = [start];
+		const visited = new Set();
+
+		while (stack.length) {
+			let current = stack.pop();
+			visited.add(current);
+			let children = this.adjacencyList[current];
+			for (let child of children) {
+				if (!visited.has(child)) stack.push(child);
+			}
+		}
 		return Array.from(visited);
 	}
 }
