@@ -53,4 +53,21 @@ class Graph {
 		}
 		return Array.from(visited);
 	}
+	BFS(start) {
+		if (!this.adjacencyList[start]) return [];
+
+		const queue = [start];
+		const visited = new Set();
+
+		while (queue.length) {
+			let current = queue.shift();
+			visited.add(current);
+			let children = this.adjacencyList[current];
+			for (let child of children) {
+				if (!visited.has(child)) queue.push(child);
+			}
+		}
+
+		return Array.from(visited);
+	}
 }
